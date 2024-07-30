@@ -1,5 +1,5 @@
 def merge_sort(arr)
-  return arr if arr.length == 1
+  return arr if arr.length < 2
 
   mid_idx = arr.length / 2
   l_half = merge_sort(arr[0...mid_idx])
@@ -42,6 +42,12 @@ expected_2 = [79, 100, 105, 110]
 input_3    = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
 expected_3 = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
 
+input_4    = [1]
+expected_4 = [1]
+
+input_5    = []
+expected_5 = []
+
 puts "Test Case 1"
 puts "Input:    #{input_1}"
 puts "Expected: #{expected_1}"
@@ -56,3 +62,13 @@ puts "Test Case 3"
 puts "Input:    #{input_3}"
 puts "Expected: #{expected_3}"
 puts "Actual:   #{merge_sort(input_3)}"
+puts
+puts "Test Case 4"
+puts "Input:    #{input_4}"
+puts "Expected: #{expected_4}"
+puts "Actual:   #{merge_sort(input_4)}"
+puts
+puts "Test Case 5"
+puts "Input:    #{input_5}"
+puts "Expected: #{expected_5}"
+puts "Actual:   #{merge_sort(input_5)}"
