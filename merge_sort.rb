@@ -1,36 +1,20 @@
 def merge_sort(arr)
   return arr if arr.length < 2
 
-  mid_idx = arr.length / 2
-  l_half = merge_sort(arr[0...mid_idx])
-  r_half = merge_sort(arr[mid_idx..-1])
+  half_elements = arr.length / 2
+  left_sorted = merge_sort(arr.take(half_elements))
+  right_sorted = merge_sort(arr.drop(half_elements))
 
-  l_idx = 0
-  r_idx = 0
+  merge(left_sorted, right_sorted)
+end
 
-  result = []
+def merge(left_arr, right_arr)
+  return left_arr if right_arr.empty?
+  return right_arr if left_arr.empty?
 
-  while l_idx < l_half.length && r_idx < r_half.length
-    if l_half[l_idx] < r_half[r_idx]
-      result << l_half[l_idx]
-      l_idx += 1
-    else
-      result << r_half[r_idx]
-      r_idx += 1
-    end
-  end
+  smallest_num = left_arr.first < right_arr.first ? left_arr.shift : right_arr.shift
 
-  while l_idx < l_half.length
-    result << l_half[l_idx]
-    l_idx += 1
-  end
-
-  while r_idx < r_half.length
-    result << r_half[r_idx]
-    r_idx += 1
-  end
-
-  result
+  [smallest_num] + merge(left_arr, right_arr)
 end
 
 input_1    = [3, 2, 1, 13, 8, 5, 0, 1]
